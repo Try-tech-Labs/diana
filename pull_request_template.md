@@ -21,4 +21,4 @@ List the test cases you've made for this changes.
 
 # Task
 
-Diana-web: [Task_#](task_url)
+Diana: [Task_#](task_url)
