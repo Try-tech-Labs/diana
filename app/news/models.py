@@ -12,3 +12,15 @@ class BaseModel(models.Model):
 class PostCategory(BaseModel):
     description = models.CharField(max_length=255)
 
+
+class PostMetaModel(models.Model):
+    category = models.ForeignKey(to=PostCategory, on_delete=models.CASCADE)
+    search_count = models.IntegerField()
+    date = models.DateTimeField()
+
+    class Meta:
+        abstract = True
+
+
+class Post(BaseModel, PostMetaModel):
+    pass
