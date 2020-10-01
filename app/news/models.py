@@ -43,3 +43,6 @@ class BaseContentModel(BaseModel):
 class Video(PostMetaModel, BaseContentModel):
     length = models.IntegerField()
 
+
+class Tweet(PostMetaModel, BaseContentModel):
+    author = models.CharField(max_length=255)
