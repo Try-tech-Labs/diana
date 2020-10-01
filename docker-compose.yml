@@ -2,6 +2,7 @@ version: "3"
 
 services:
   app:
+    env_file: .env
     build:
       context: .
     ports:
@@ -10,3 +11,20 @@ services:
       - ./app:/app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: "${SQL_USER}"
+      POSTGRES_PASSWORD: "${SQL_PASSWORD}"
+      POSTGRES_DB: "${SQL_DATABASE}"
+    ports:
+        - "5432:5432"
+    networks: 
+        - postgres-compose-network
+volumes:
+    postgres_data:
+networks: 
+    postgres-compose-network:
+        driver: bridge
