@@ -48,4 +48,4 @@ class Video(PostMetaModel, BaseContentModel):
 
 
 class Tweet(PostMetaModel, BaseContentModel):
-    content = models.TextField()
+    content = models.TextField(max_length=280)
