@@ -6,6 +6,9 @@ class BaseModel(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     title = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         abstract = True
 
