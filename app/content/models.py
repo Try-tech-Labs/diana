@@ -35,7 +35,6 @@ class Tag(BaseModel):
 
 
 class BaseContentModel(BaseModel):
-    post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
     author = models.CharField(max_length=255)
     source = models.CharField(max_length=255)
     source_url = models.URLField()
@@ -46,9 +45,11 @@ class BaseContentModel(BaseModel):
 
 
 class Video(PostMetaModel, BaseContentModel):
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="videos")
     length = models.IntegerField()
     content = models.URLField()
 
 
 class Tweet(PostMetaModel, BaseContentModel):
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="tweets")
     content = models.TextField(max_length=280)
