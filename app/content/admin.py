@@ -4,6 +4,7 @@ from .models import Post
 from .models import PostCategory
 from .models import Tag
 from .models import Tweet
+from .models import Video
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -27,7 +28,14 @@ class TweetAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title', 'category__title', 'source', 'author', 'creation_date')
 
 
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'category', 'source', 'author', 'creation_date')
+    list_filter = ('author', 'tags')
+    search_fields = ('id', 'title', 'category__title', 'source', 'author', 'creation_date')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(PostCategory, PostCategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Tweet, TweetAdmin)
+admin.site.register(Video, VideoAdmin)
