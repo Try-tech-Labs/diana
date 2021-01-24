@@ -8,43 +8,57 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('content', '0002_tag_tweet'),
+        ("content", "0002_tag_tweet"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='post',
-            old_name='date',
-            new_name='creation_date',
+            model_name="post",
+            old_name="date",
+            new_name="creation_date",
         ),
         migrations.RenameField(
-            model_name='tweet',
-            old_name='date',
-            new_name='creation_date',
+            model_name="tweet",
+            old_name="date",
+            new_name="creation_date",
         ),
         migrations.AlterField(
-            model_name='tweet',
-            name='content',
+            model_name="tweet",
+            name="content",
             field=models.TextField(max_length=280),
         ),
         migrations.CreateModel(
-            name='Video',
+            name="Video",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=255)),
-                ('search_count', models.PositiveIntegerField(default=0)),
-                ('creation_date', models.DateTimeField(default=django.utils.timezone.now)),
-                ('author', models.CharField(max_length=255)),
-                ('source', models.CharField(max_length=255)),
-                ('source_url', models.URLField()),
-                ('length', models.IntegerField()),
-                ('content', models.URLField()),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.postcategory')),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.post')),
-                ('tags', models.ManyToManyField(to='content.Tag')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=255)),
+                ("search_count", models.PositiveIntegerField(default=0)),
+                (
+                    "creation_date",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                ("author", models.CharField(max_length=255)),
+                ("source", models.CharField(max_length=255)),
+                ("source_url", models.URLField()),
+                ("length", models.IntegerField()),
+                ("content", models.URLField()),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="content.postcategory",
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="content.post"
+                    ),
+                ),
+                ("tags", models.ManyToManyField(to="content.Tag")),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

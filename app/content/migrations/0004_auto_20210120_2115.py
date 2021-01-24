@@ -7,18 +7,26 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('content', '0003_auto_20210102_0330'),
+        ("content", "0003_auto_20210102_0330"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='tweet',
-            name='post',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tweets', to='content.post'),
+            model_name="tweet",
+            name="post",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="tweets",
+                to="content.post",
+            ),
         ),
         migrations.AlterField(
-            model_name='video',
-            name='post',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='videos', to='content.post'),
+            model_name="video",
+            name="post",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="videos",
+                to="content.post",
+            ),
         ),
     ]
