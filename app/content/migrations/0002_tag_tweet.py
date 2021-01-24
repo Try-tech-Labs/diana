@@ -8,37 +8,48 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('content', '0001_initial'),
+        ("content", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=255)),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=255)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Tweet',
+            name="Tweet",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=255)),
-                ('search_count', models.PositiveIntegerField(default=0)),
-                ('date', models.DateTimeField(default=django.utils.timezone.now)),
-                ('content', models.TextField()),
-                ('author', models.CharField(max_length=255)),
-                ('source', models.CharField(max_length=255)),
-                ('source_url', models.URLField()),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.postcategory')),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.post')),
-                ('tags', models.ManyToManyField(to='content.Tag')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=255)),
+                ("search_count", models.PositiveIntegerField(default=0)),
+                ("date", models.DateTimeField(default=django.utils.timezone.now)),
+                ("content", models.TextField()),
+                ("author", models.CharField(max_length=255)),
+                ("source", models.CharField(max_length=255)),
+                ("source_url", models.URLField()),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="content.postcategory",
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="content.post"
+                    ),
+                ),
+                ("tags", models.ManyToManyField(to="content.Tag")),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

@@ -22,10 +22,10 @@ from .viewsets import PostsViewSet
 
 route = routers.DefaultRouter()
 
-route.register('posts', PostsViewSet, basename='Posts')
+route.register("posts", PostsViewSet, basename="Posts")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('', include(route.urls))
+    path("admin/", admin.site.urls),
+    path("api-token-auth/", obtain_auth_token, name="api_token_auth"),
+    path("", include(route.urls)),
 ]

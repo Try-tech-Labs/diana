@@ -9,32 +9,37 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='PostCategory',
+            name="PostCategory",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=255)),
-                ('description', models.CharField(max_length=255)),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=255)),
+                ("description", models.CharField(max_length=255)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=255)),
-                ('search_count', models.PositiveIntegerField(default=0)),
-                ('date', models.DateTimeField(default=django.utils.timezone.now)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.postcategory')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=255)),
+                ("search_count", models.PositiveIntegerField(default=0)),
+                ("date", models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="content.postcategory",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
