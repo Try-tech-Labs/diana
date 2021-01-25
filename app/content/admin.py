@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, PostCategory, Tag, Tweet, Video, TwitterTrendingTopic
+from .models import News, Post, PostCategory, Tag, Tweet, Video, TwitterTrendingTopic
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -42,6 +42,18 @@ class TweetAdmin(admin.ModelAdmin):
     )
 
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "source", "author", "creation_date")
+    list_filter = ("author", "tags")
+    search_fields = (
+        "id",
+        "title",
+        "source",
+        "author",
+        "creation_date",
+    )
+
+
 class VideoAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "source", "author", "creation_date")
     list_filter = ("author", "tags")
@@ -59,4 +71,5 @@ admin.site.register(PostCategory, PostCategoryAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(Video, VideoAdmin)
+admin.site.register(News, NewsAdmin)
 admin.site.register(TwitterTrendingTopic, TwitterTrendingTopicsAdmin)
