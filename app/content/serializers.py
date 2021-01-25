@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post, Tweet, Video, PostCategory, Tag, TwitterTrendingTopic
+from .models import News, Post, Tweet, Video, PostCategory, Tag, TwitterTrendingTopic
 
 
 class TagsSerializer(serializers.ModelSerializer):
@@ -33,6 +33,15 @@ class VideosSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class NewsSerializer(serializers.ModelSerializer):
+    tags = TagsSerializer(read_only=True, many=True)
+    category = PostCategorySerializer(read_only=True)
+
+    class Meta:
+        model = News
+        fields = "__all__"
+
+
 class TwitterTrendingTopicSerializer(serializers.ModelSerializer):
     tags = TagsSerializer(read_only=True, many=True)
     category = PostCategorySerializer(read_only=True)
@@ -46,6 +55,7 @@ class PostsSerializer(serializers.ModelSerializer):
     category = PostCategorySerializer(read_only=True)
     videos = VideosSerializer(read_only=True, many=True)
     tweets = TweetsSerializer(read_only=True, many=True)
+    news = NewsSerializer(read_only=True, many=True)
     trending_topics = TwitterTrendingTopicSerializer(read_only=True, many=True)
 
     class Meta:
