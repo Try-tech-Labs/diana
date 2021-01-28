@@ -54,3 +54,9 @@ class Video(BaseContentModel):
 class Tweet(BaseContentModel):
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="tweets")
     content = models.TextField(max_length=280)
+
+
+class News(BaseContentModel):
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, related_name="news")
+    thumbnail = models.URLField()
+    content = models.CharField(max_length=512)
