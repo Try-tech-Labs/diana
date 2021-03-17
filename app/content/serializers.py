@@ -1,6 +1,16 @@
+from pytz import UTC as utc
 from rest_framework import serializers
+from rest_framework.fields import DateTimeField
 
-from .models import News, Post, Tweet, Video, PostCategory, Tag, TwitterTrendingTopic
+from app.content.models import (
+    News,
+    Post,
+    Tweet,
+    Video,
+    PostCategory,
+    Tag,
+    TwitterTrendingTopic,
+)
 
 
 class TagsSerializer(serializers.ModelSerializer):
@@ -17,7 +27,6 @@ class PostCategorySerializer(serializers.ModelSerializer):
 
 class TweetsSerializer(serializers.ModelSerializer):
     tags = TagsSerializer(read_only=True, many=True)
-    category = PostCategorySerializer(read_only=True)
 
     class Meta:
         model = Tweet
@@ -26,7 +35,6 @@ class TweetsSerializer(serializers.ModelSerializer):
 
 class VideosSerializer(serializers.ModelSerializer):
     tags = TagsSerializer(read_only=True, many=True)
-    category = PostCategorySerializer(read_only=True)
 
     class Meta:
         model = Video
@@ -35,7 +43,6 @@ class VideosSerializer(serializers.ModelSerializer):
 
 class NewsSerializer(serializers.ModelSerializer):
     tags = TagsSerializer(read_only=True, many=True)
-    category = PostCategorySerializer(read_only=True)
 
     class Meta:
         model = News
@@ -43,9 +50,6 @@ class NewsSerializer(serializers.ModelSerializer):
 
 
 class TwitterTrendingTopicSerializer(serializers.ModelSerializer):
-    tags = TagsSerializer(read_only=True, many=True)
-    category = PostCategorySerializer(read_only=True)
-
     class Meta:
         model = TwitterTrendingTopic
         fields = "__all__"
@@ -53,10 +57,8 @@ class TwitterTrendingTopicSerializer(serializers.ModelSerializer):
 
 class PostsSerializer(serializers.ModelSerializer):
     category = PostCategorySerializer(read_only=True)
-    videos = VideosSerializer(read_only=True, many=True)
-    tweets = TweetsSerializer(read_only=True, many=True)
-    news = NewsSerializer(read_only=True, many=True)
     trending_topics = TwitterTrendingTopicSerializer(read_only=True, many=True)
+    creation_date = DateTimeField(default_timezone=utc)
 
     class Meta:
         model = Post
