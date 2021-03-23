@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
-    "content",
+    "app.content",
 ]
 
 MIDDLEWARE = [
@@ -55,11 +55,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:8000", "http://127.0.0.1:8000"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
-ROOT_URLCONF = "content.urls"
+ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
     {
@@ -77,15 +82,19 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "content.wsgi.application"
+WSGI_APPLICATION = "app.wsgi.application"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%SZ",
+    "DATE_FORMAT": "%Y-%m-%d",
+    "TIME_FORMAT": "%H:%M:%S",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
     ],
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
 }
 
 # Database

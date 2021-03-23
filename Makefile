@@ -2,7 +2,7 @@ run:
 	@docker-compose up
 
 test:
-	bin/run.sh app pytest
+	bin/run.sh app pytest -vv 
 
 lint:
 	bin/run.sh app flake8
